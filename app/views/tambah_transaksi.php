@@ -6,29 +6,14 @@
     <title>Tambah Transaksi</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="index.php?page=home">HOME</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li><a href="index.php?page=barang" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'barang') ? 'active' : ''; ?>">Barang</a></li>
-                    <li><a href="index.php?page=pelanggan" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'pelanggan') ? 'active' : ''; ?>">Pelanggan</a></li>
-                    <li><a href="index.php?page=transaksi" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'transaksi') ? 'active' : ''; ?>">Transaksi</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="bg-light d-flex flex-column min-vh-100">
+        <!-- Navbar -->
+        <?php include __DIR__ . '/template/navbar.php'; ?>
 
     <div class="container mt-5">
         <h5 class="text-left text-success">Tambah Transaksi</h5>
         <form action="index.php?page=tambah_transaksi" method="POST">
-        <div class="mb-3">
+            <div class="mb-3">
                 <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
                 <input type="text" class="form-control" id="id_pelanggan" name="id_pelanggan" required>
             </div>
@@ -40,14 +25,40 @@
                 <label for="jumlah" class="form-label">Jumlah</label>
                 <input type="number" class="form-control" id="jumlah" name="jumlah" required>
             </div>
-            <div class="mb-3">
-                <label for="harga_total" class="form-label">Harga Total</label>
-                <input type="number" class="form-control" id="harga_total" name="harga_total" required>
-            </div>
             <button type="submit" class="btn btn-success">Simpan Transaksi</button>
             <a href="index.php?page=transaksi" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
+
+    <!-- Modal untuk pesan kesalahan -->
+    <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="errorModalLabel">Terjadi Kesalahan</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <?php if (!empty($errorMessage)): ?>
+                        <p><?php echo $errorMessage; ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- FOOTER -->
+        <?php include __DIR__ . '/template/footer.php'; ?>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Tampilkan modal jika ada pesan kesalahan
+        <?php if (!empty($errorMessage)): ?>
+            var myModal = new bootstrap.Modal(document.getElementById('errorModal'));
+            myModal.show();
+        <?php endif; ?>
+    </script>
 </body>
 </html>

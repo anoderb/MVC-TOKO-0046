@@ -1,5 +1,5 @@
 <?php
-class barangUser {
+class barangModels {
     private $db;
 
     public function __construct($dbConnection) {

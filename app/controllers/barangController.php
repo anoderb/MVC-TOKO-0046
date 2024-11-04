@@ -1,11 +1,11 @@
 <?php
-require_once 'app/models/barangUser.php';
+require_once 'app/models/barangModels.php';
 
 class barangController {
     private $userModel;
 
     public function __construct($dbConnection) {
-        $this->userModel = new barangUser($dbConnection);
+        $this->userModel = new barangModels($dbConnection);
     }
 
     public function show($id_barang) {

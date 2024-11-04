@@ -1,5 +1,5 @@
 <?php
-require_once 'app/models/homeUser.php';
+require_once 'app/models/homeModels.php';
 class homeController {
     private $homeController;
     public function __construct($dbConnection) {

@@ -1,5 +1,5 @@
 <?php
-class pelangganUser {
+class pelangganModels {
     private $db;
 
     public function __construct($dbConnection) {
@@ -65,10 +65,5 @@ class pelangganUser {
             return false;
         }
     }
-    
-
-    
 }
 ?>
-
-

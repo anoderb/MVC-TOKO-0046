@@ -16,24 +16,10 @@
     <!-- Link to Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body class="bg-light">
+<body class="bg-light d-flex flex-column min-vh-100">
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
-        <div class="container">
-            <a class="navbar-brand fw-bold text-white" href="index.php?page=home">HOME</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li><a href="index.php?page=barang" class="nav-link text-white ms-3 <?php echo (isset($_GET['page']) && $_GET['page'] == 'barang') ? 'active' : ''; ?>">Barang</a></li>
-                <li><a href="index.php?page=pelanggan" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'pelanggan') ? 'active' : ''; ?>">Pelanggan</a></li>
-                <li><a href="index.php?page=transaksi" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'transaksi') ? 'active' : ''; ?>">Transaksi</a></li>
-            </ul>
-            </div>
-        </div>
-    </nav>
+        <!-- Navbar -->
+        <?php include __DIR__ . '/template/navbar.php'; ?>
 <body>
     <div class="container mt-5">
         <h2>Edit Pelanggan</h2>
@@ -55,5 +41,7 @@
             <a href="index.php?page=pelanggan" class="btn btn-secondary">Kembali</a>
         </form>
     </div>
+        <!-- FOOTER -->
+        <?php include __DIR__ . '/template/footer.php'; ?>
 </body>
 </html>
