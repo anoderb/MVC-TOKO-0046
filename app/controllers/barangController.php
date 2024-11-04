@@ -57,13 +57,18 @@ class barangController {
         require_once 'app/views/edit_barang.php';
     }
     public function delete($id_barang) {
-        $this->userModel->deleteBarang($id_barang);
-        header('Location: index.php?page=barang');
-        exit();
-
+        $result = $this->userModel->deleteBarang($id_barang);
+        if (!$result) {
+            // Jika ada pesan kesalahan, arahkan ke halaman barang dan tampilkan pesan
+            header('Location: index.php?page=barang&error_message=' . urlencode($_SESSION['error_message']));
+            exit();
+        }
         
-    
+        // Jika penghapusan berhasil
+        header('Location: index.php?page=barang&success_message=' . urlencode("Barang berhasil dihapus."));
+        exit();
     }
+    
     
 }
 ?>

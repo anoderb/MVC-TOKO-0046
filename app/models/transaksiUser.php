@@ -12,13 +12,14 @@ class transaksiUser {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function tambahTransaksi($id_barang, $jumlah, $harga_total) {
+    public function tambahTransaksi($id_pelanggan, $id_barang, $jumlah, $harga_total) {
         try {
             
             $this->db->beginTransaction();
 
             // Insert data transaksi
-            $stmt = $this->db->prepare("INSERT INTO transaksi (id_barang, jumlah, harga_total, tanggal) VALUES (:id_barang, :jumlah, :harga_total, NOW())");
+            $stmt = $this->db->prepare("INSERT INTO transaksi (id_pelanggan, id_barang, jumlah, harga_total, tanggal) VALUES (:id_pelanggan, :id_barang, :jumlah, :harga_total, NOW())");
+            $stmt->bindParam(':id_pelanggan', $id_pelanggan);
             $stmt->bindParam(':id_barang', $id_barang);
             $stmt->bindParam(':jumlah', $jumlah);
             $stmt->bindParam(':harga_total', $harga_total);

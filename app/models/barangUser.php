@@ -38,9 +38,31 @@ class barangUser {
     }
 
     public function deleteBarang($id_barang) {
-        $stmt = $this->db->prepare("DELETE FROM barang WHERE id_barang = :id_barang");
-        $stmt->bindParam(':id_barang', $id_barang);
-        return $stmt->execute();
+        try {
+            // Periksa apakah barang memiliki transaksi terkait
+            $query = $this->db->prepare("SELECT COUNT(*) FROM transaksi WHERE id_barang = :id_barang");
+            $query->bindParam(":id_barang", $id_barang);
+            $query->execute();
+            $count = $query->fetchColumn();
+    
+            if ($count > 0) {
+                // Jika ada transaksi terkait, kirim pesan peringatan
+                $_SESSION['error_message'] = "Barang dengan Kode '$id_barang' tidak dapat dihapus karena digunakan dalam transaksi.";
+                return false;
+            }
+    
+            // Jika tidak ada transaksi terkait, lanjutkan penghapusan
+            $query = $this->db->prepare("DELETE FROM barang WHERE id_barang = :id_barang");
+            $query->bindParam(":id_barang", $id_barang);
+            $query->execute();
+    
+            return true;
+        } catch (PDOException $e) {
+            // Tangani error lain
+            $_SESSION['error_message'] = "Terjadi kesalahan saat menghapus barang: " . $e->getMessage();
+            return false;
+        }
     }
+    
 }
 ?>

@@ -54,9 +54,22 @@ class pelangganController {
         require_once 'app/views/edit_pelanggan.php';
     }
 
+    // public function delete($id_pelanggan) {
+    //     $this->userModel->deleteplg($id_pelanggan);
+    //     header('Location: index.php?page=pelanggan');
+    //     exit();
+    // }
+
     public function delete($id_pelanggan) {
-        $this->userModel->deleteplg($id_pelanggan);
-        header('Location: index.php?page=pelanggan');
+        $result = $this->userModel->deleteplg($id_pelanggan);
+        if (!$result) {
+            // Jika ada pesan kesalahan, arahkan ke halaman barang dan tampilkan pesan
+            header('Location: index.php?page=pelanggan&error_message=' . urlencode($_SESSION['error_message']));
+            exit();
+        }
+        
+        // Jika penghapusan berhasil
+        header('Location: index.php?page=pelanggan&success_message=' . urlencode("Barang berhasil dihapus."));
         exit();
     }
 

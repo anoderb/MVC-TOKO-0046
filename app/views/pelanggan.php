@@ -30,6 +30,18 @@
     <div class="container mt-5 mb-5">
         <h4 class="text-left text-success mb-3">Data Pelanggan</h4>
         
+        <?php if (isset($_GET['error_message'])): ?>
+            <div class="alert alert-danger">
+                <?php echo htmlspecialchars($_GET['error_message']); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['success_message'])): ?>
+            <div class="alert alert-success">
+                <?php echo htmlspecialchars($_GET['success_message']); ?>
+            </div>
+        <?php endif; ?>
+        
         <a href="index.php?page=tambah_plg" class="btn btn-info btn-sm bg-success text-white mb-3">Tambahkan Data</a>
 
         <div class="table-responsive shadow-sm rounded">

@@ -15,12 +15,13 @@ class transaksiController {
 
     public function tambah() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_pelanggan = $_POST['id_pelanggan'];
             $id_barang = $_POST['id_barang'];
             $jumlah = $_POST['jumlah'];
             $harga_total = $_POST['harga_total'];
 
             try {
-                $this->userModel->tambahTransaksi($id_barang, $jumlah, $harga_total);
+                $this->userModel->tambahTransaksi($id_pelanggan, $id_barang, $jumlah, $harga_total);
                 header('Location: index.php?page=transaksi');
                 exit();
             } catch (Exception $e) {

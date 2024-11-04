@@ -37,6 +37,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">ID Transaksi</th>
+                        <th scope="col">ID Pelanggan</th>
                         <th scope="col">ID Barang</th>
                         <th scope="col">Jumlah</th>
                         <th scope="col">Harga Total</th>
@@ -53,6 +54,7 @@
                     <tr>
                         <th scope="row"><?php echo $nomor++; ?></th>
                         <td><?php echo $item["id_transaksi"]; ?></td>
+                        <td><?php echo $item["id_pelanggan"]; ?></td>
                         <td><?php echo $item["id_barang"]; ?></td>
                         <td><?php echo $item["jumlah"]; ?></td>
                         <td>Rp <?php echo number_format($item["harga_total"], 0, ',', '.'); ?></td>

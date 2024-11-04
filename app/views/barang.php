@@ -4,12 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Barang</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="bg-light d-flex flex-column min-vh-100">
-
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
         <div class="container">
             <a class="navbar-brand fw-bold text-white" href="index.php?page=home">HOME</a>
@@ -18,7 +15,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <l><a href="index.php?page=barang" class="nav-link text-white fw-bold <?php echo (isset($_GET['page']) && $_GET['page'] == 'barang') ? 'active' : ''; ?>">Barang</a></l>
+                    <li><a href="index.php?page=barang" class="nav-link text-white fw-bold <?php echo (isset($_GET['page']) && $_GET['page'] == 'barang') ? 'active' : ''; ?>">Barang</a></li>
                     <li><a href="index.php?page=pelanggan" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'pelanggan') ? 'active' : ''; ?>">Pelanggan</a></li>
                     <li><a href="index.php?page=transaksi" class="nav-link text-white <?php echo (isset($_GET['page']) && $_GET['page'] == 'transaksi') ? 'active' : ''; ?>">Transaksi</a></li>
                 </ul>
@@ -29,6 +26,18 @@
     <div class="container mt-5 flex-fill">
         <h4 class="text-left text-success mb-3">Data Barang</h4>
         
+        <?php if (isset($_GET['error_message'])): ?>
+            <div class="alert alert-danger">
+                <?php echo htmlspecialchars($_GET['error_message']); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_GET['success_message'])): ?>
+            <div class="alert alert-success">
+                <?php echo htmlspecialchars($_GET['success_message']); ?>
+            </div>
+        <?php endif; ?>
+
         <a href="index.php?page=tambah_brg" class="btn btn-sm bg-success text-white mb-3">Tambahkan Data</a>
 
         <div class="table-responsive shadow-sm rounded">
@@ -71,14 +80,12 @@
         </div>
     </div>
 
-
     <footer class="bg-success text-center text-white py-4 mt-5">
         <div class="container">
             <p class="mb-1">© <?php echo date("Y"); ?> Khamdanu Syakir. All rights reserved.</p>
             <small>NIM: 23.240,0046</small>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>

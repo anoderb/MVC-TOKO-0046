@@ -28,6 +28,10 @@
     <div class="container mt-5">
         <h5 class="text-left text-success">Tambah Transaksi</h5>
         <form action="index.php?page=tambah_transaksi" method="POST">
+        <div class="mb-3">
+                <label for="id_pelanggan" class="form-label">ID Pelanggan</label>
+                <input type="text" class="form-control" id="id_pelanggan" name="id_pelanggan" required>
+            </div>
             <div class="mb-3">
                 <label for="id_barang" class="form-label">ID Barang</label>
                 <input type="text" class="form-control" id="id_barang" name="id_barang" required>

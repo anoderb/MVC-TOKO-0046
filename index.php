@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once 'configs/database.php';
 require_once 'app/controllers/barangController.php';
 require_once 'app/controllers/pelangganController.php';
@@ -88,4 +89,5 @@ switch ($page) {
         $controller->index(); // Tampilkan home
         break;
 }
+ob_end_flush();
 ?>
